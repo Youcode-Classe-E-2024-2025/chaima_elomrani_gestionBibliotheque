@@ -49,9 +49,9 @@ class BooksController extends Controller
         return view('books', compact('books'));
     }
 
-    // public function delete($id)
-    // {
-    //     Book::destroy($id);
-    //     return redirect('/books');
-    // }
+    public function delete($id)
+    {
+        Book::destroy($id);
+        return redirect('admin');
+    }
 }

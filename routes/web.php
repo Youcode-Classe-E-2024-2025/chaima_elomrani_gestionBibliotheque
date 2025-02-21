@@ -21,3 +21,4 @@ Route::get('/profile', [ProfileController::class, 'index']);
 Route::get('/admin', [BooksController::class, 'adminIndex']);
 Route::get('/books', [BooksController::class, 'index']);
 Route::post('/books', [BooksController::class, 'store'])->name('books.store');
+Route::delete('/books/{id}', [BooksController::class, 'delete'])->name('books.delete');
