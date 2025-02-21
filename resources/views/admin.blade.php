@@ -137,7 +137,7 @@
                                 <td>
                                     <img src="{{ $book['image'] }}" alt="Book cover" class="w-12 h-18 object-cover rounded">
                                 </td>
-                                
+
                                 <td class="py-4 px-4">{{ $book['author'] }}</td>
                                 <td class="py-4 px-4">{{ $book['title'] }}</td>
                                 <td class="py-4 px-4">{{ $book['description'] }}</td>
@@ -147,21 +147,23 @@
                                 </td>
                                 <td class="py-4 px-4">
                                     <div class="flex gap-2">
-                                        <button onclick="openEditModal()" class="text-primary hover:text-accent">
+                                        <a href="{{ route('books.edit', $book->id) }}"
+                                            class="text-primary hover:text-accent">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                             </svg>
-                                        </button>
+                                        </a>
+
                                         <form action="{{ route('books.delete', $book->id) }}" method="Post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-danger hover:text-red-400">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                            </svg>
-                                        </button>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-danger hover:text-red-400">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                </svg>
+                                            </button>
                                         </form>
                                     </div>
                                 </td>
@@ -189,18 +191,16 @@
                         </button>
                     </div>
                     <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
+                        @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-sm font-medium mb-2">Book Title</label>
-                                <input type="text"
-                                name="title"
+                                <input type="text" name="title"
                                     class="magic-input w-full px-4 py-2 rounded-lg text-text focus:outline-none">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Author</label>
-                                <input type="text"
-                                name="author"
+                                <input type="text" name="author"
                                     class="magic-input w-full px-4 py-2 rounded-lg text-text focus:outline-none">
                             </div>
                             <div>
@@ -213,9 +213,8 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Status</label>
-                                <select
-                                name="status"
-                                class="magic-input w-full px-4 py-2 rounded-lg text-text focus:outline-none">
+                                <select name="status"
+                                    class="magic-input w-full px-4 py-2 rounded-lg text-text focus:outline-none">
                                     <option>Available</option>
                                     <option>On Loan</option>
                                     <option>Reserved</option>
@@ -223,9 +222,7 @@
                             </div>
                             <div class="md:col-span-2">
                                 <label class="block text-sm font-medium mb-2">Description</label>
-                                <textarea 
-                                name="description"
-                                rows="4"
+                                <textarea name="description" rows="4"
                                     class="magic-input w-full px-4 py-2 rounded-lg text-text focus:outline-none"></textarea>
                             </div>
                             <div class="md:col-span-2">
@@ -239,8 +236,7 @@
                                 class="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary hover:text-background transition-colors duration-300">
                                 Cancel
                             </button>
-                            <button
-                            type="submit"
+                            <button type="submit"
                                 class="px-6 py-2 rounded-full bg-primary text-background hover:bg-opacity-80 transition-colors duration-300">
                                 Add Book
                             </button>
@@ -259,24 +255,29 @@
                 <div class="p-6">
                     <div class="flex justify-between items-center mb-6">
                         <h2 class="text-2xl font-heading font-bold text-primary">Edit Book</h2>
+
                         <button onclick="closeEditModal()" class="text-text hover:text-primary">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
                         </button>
+
                     </div>
-                    <form onsubmit="return false;">
+                    <form action="{{ route('books.update', $book->id) }}" method="POST">
+                        @method('PUT')
+                        @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-sm font-medium mb-2">Book Title</label>
-                                <input type="text" value="Advanced Potion Making"
+                                <input type="text" name="title" value="{{ $book['title'] }}"
                                     class="magic-input w-full px-4 py-2 rounded-lg text-text focus:outline-none">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Author</label>
-                                <input type="text" value="Libatius Borage"
+                                <input type="text" name="author" value="{{ $book['author'] }}"
                                     class="magic-input w-full px-4 py-2 rounded-lg text-text focus:outline-none">
+
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Category</label>
@@ -289,20 +290,24 @@
                             <div>
                                 <label class="block text-sm font-medium mb-2">Status</label>
                                 <select class="magic-input w-full px-4 py-2 rounded-lg text-text focus:outline-none">
-                                    <option selected>Available</option>
-                                    <option>On Loan</option>
-                                    <option>Reserved</option>
+                                    <option selected>Status</option>
+                                    <option value="available" {{ $book->status == 'available' ? 'selected' : '' }}>
+                                        Available</option>
+                                    <option value="borrowed" {{ $book->status == 'borrowed' ? 'selected' : '' }}>On load
+                                    </option>
+                                    <option value="borrowed" {{ $book->status == 'borrowed' ? 'selected' : '' }}>Reserved
+                                    </option>
                                 </select>
                             </div>
                             <div class="md:col-span-2">
                                 <label class="block text-sm font-medium mb-2">Description</label>
                                 <textarea rows="4"
-                                    class="magic-input w-full px-4 py-2 rounded-lg text-text focus:outline-none">An advanced guide to potion-making, featuring complex recipes and magical brewing techniques.</textarea>
+                                    class="magic-input w-full px-4 py-2 rounded-lg text-text focus:outline-none">{{ $book['description'] }}</textarea>
                             </div>
                             <div class="md:col-span-2">
                                 <label class="block text-sm font-medium mb-2">Current Cover Image</label>
                                 <div class="flex items-center gap-4">
-                                    <img src="/api/placeholder/100/150" alt="Current cover"
+                                    <img src="{{ $book['image'] }}" alt="Current cover"
                                         class="w-24 h-36 object-cover rounded">
                                     <input type="file" accept="image/*"
                                         class="magic-input flex-1 px-4 py-2 rounded-lg text-text focus:outline-none">
@@ -314,7 +319,7 @@
                                 class="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary hover:text-background transition-colors duration-300">
                                 Cancel
                             </button>
-                            <button
+                            <button type="submit"
                                 class="px-6 py-2 rounded-full bg-primary text-background hover:bg-opacity-80 transition-colors duration-300">
                                 Save Changes
                             </button>
@@ -467,7 +472,7 @@
         }
 
         // Form submission handling
-        
+
     </script>
 </body>
 

@@ -21,7 +21,7 @@ class BooksController extends Controller
         return view('admin', compact('books'));
     }
 
-    
+
 
 
     public function store(Request $request)
@@ -36,7 +36,7 @@ class BooksController extends Controller
             ]);
 
             $path = $request->hasFile('image') ? $request->file('image')->store('images', 'public') : null;
-            
+
             Book::create([
                 'author' => $request->author,
                 'title' => $request->title,
@@ -52,6 +52,21 @@ class BooksController extends Controller
     public function delete($id)
     {
         Book::destroy($id);
+        return redirect('admin');
+    }
+
+
+    public function edit($id)
+{
+    $book = Book::findOrFail($id); // Correct variable name
+    $books = Book::all(); // Pass all books to maintain the view's existing logic
+    return view('books', compact('book', 'books'));
+}
+
+    public function update(Request $request, $id)
+    {
+        $book = Book::find($id);
+        $book->update($request->all());
         return redirect('admin');
     }
 }
