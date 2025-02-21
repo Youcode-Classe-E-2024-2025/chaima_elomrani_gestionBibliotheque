@@ -61,10 +61,10 @@
             <div class="flex justify-between items-center">
                 <a href="#" class="text-3xl font-heading font-bold text-primary">BookNest</a>
                 <div class="hidden md:flex space-x-6">
-                    <a href="#" class="text-text hover:text-primary transition-colors duration-300">Home</a>
-                    <a href="#" class="text-text hover:text-primary transition-colors duration-300">Catalogue</a>
-                    <a href="#" class="text-text hover:text-primary transition-colors duration-300">Spells</a>
-                    <a href="#" class="text-text hover:text-primary transition-colors duration-300">Potions</a>
+                <a href="/" class="text-text hover:text-primary transition-colors duration-300">Home</a>
+                    <a href="/books" class="text-text hover:text-primary transition-colors duration-300">Catalogue</a>
+                    <a href="/addPage" class="text-text hover:text-primary transition-colors duration-300">Add Books</a>
+                    <a href="/profile" class="text-text hover:text-primary transition-colors duration-300">Profile</a>
                 </div>
             </div>
         </nav>
