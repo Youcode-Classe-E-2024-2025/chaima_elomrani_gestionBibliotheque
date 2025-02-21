@@ -27,8 +27,22 @@ class BooksController extends Controller
     public function store(Request $request)
     {
         if ($request->isMethod('POST')) {
+            $request->validate([
+                'author' => 'required|string|max:255',
+                'title' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'status' => 'required|string',
+                'image' => 'nullable|image|max:2048', // Example validation for image
+            ]);
+
+            $path = $request->hasFile('image') ? $request->file('image')->store('images', 'public') : null;
             
-            Book::create($request->all());
+            Book::create([
+                'author' => $request->author,
+                'title' => $request->title,
+                'description' => $request->description,
+                'image' => $path,
+            ]);
             return redirect('books');
         }
         $books = Book::all();

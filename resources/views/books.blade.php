@@ -106,12 +106,12 @@
         <!-- Book Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             @foreach($books as $book)
-                <div class="book-card cursor-pointer bg-secondary bg-opacity-50 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:scale-105"
+            <div class="book-card cursor-pointer bg-secondary bg-opacity-50 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:scale-105"
                     data-book-id="{{ $book['id'] }}" data-book-title="{{ $book['title'] }}"
                     data-book-author="{{ $book['author'] }}" data-book-description="{{ $book['description'] }}"
-                    data-book-image="{{ $book['image'] }}">
+                    data-book-image="{{ asset("storage/".$book['image']) }}">
                     <div class="relative h-96">
-                        <img src="{{ $book['image'] }}" alt="{{ $book['title'] }}" class="w-full h-full object-cover">
+                        <img src="{{ asset("storage/".$book['image']) }}" alt="{{ $book['title'] }}" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-4">
                             <h3 class="text-xl font-heading font-bold text-primary">{{ $book['title'] }}</h3>
