@@ -62,7 +62,7 @@
     </style>
 </head>
 <body class="bg-background text-text">
-    <div class="magic-sparkle fixed inset-0 pointer-events-none opacity-30"></div>
+    <div class=" fixed inset-0 pointer-events-none opacity-30"></div>
 
     <!-- Header -->
     <header class="bg-secondary bg-opacity-50 shadow-lg">
@@ -108,7 +108,8 @@
                         <tr class="border-b border-primary border-opacity-20">
                             <th class="text-left py-4 px-4 font-heading text-primary">Title</th>
                             <th class="text-left py-4 px-4 font-heading text-primary">Author</th>
-                            <th class="text-left py-4 px-4 font-heading text-primary">Category</th>
+                            <th class="text-left py-4 px-4 font-heading text-primary">Cover</th>
+                            <th class="text-left py-4 px-4 font-heading text-primary">description</th>
                             <th class="text-left py-4 px-4 font-heading text-primary">Status</th>
                             <th class="text-left py-4 px-4 font-heading text-primary">Actions</th>
                         </tr>

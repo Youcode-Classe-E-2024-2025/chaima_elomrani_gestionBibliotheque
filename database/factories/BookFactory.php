@@ -20,7 +20,8 @@ class BookFactory extends Factory
             "title" => $this->faker->realText(15),
             'author' => $this->faker->name(),
             'description' => $this->faker->realText(100),
-            'image' => $this->faker->imageUrl()
+            'image' => $this->faker->imageUrl(),
+            'status'=> $this->faker->realText(50)
         ];
     }
 }
