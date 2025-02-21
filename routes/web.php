@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BooksController;
 
 Route::get('register', [AuthController::class, 'showRegisterForm']);
 Route::post('register', [AuthController::class, 'register']);
@@ -11,6 +12,8 @@ Route::post('login', [AuthController::class, 'Login']);
 Route::get('/profile', [AuthController::class, 'profile']);
 // Route::get('/profile', [AuthController::class, 'profile']);
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/books', [BooksController::class, 'index']);
+
 
 
 // Route::post('register', [AuthController::class, 'register']);:
